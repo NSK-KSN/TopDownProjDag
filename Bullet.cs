@@ -21,6 +21,12 @@ public class Bullet : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+        if(lifetime <= 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime -= Time.deltaTime;
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 }
