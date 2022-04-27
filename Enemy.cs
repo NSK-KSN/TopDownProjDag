@@ -12,11 +12,13 @@ public class Enemy : MonoBehaviour
     public int damage;
     private Player player;
     private ScoreManager sm;
+    private EnemySpawner enemyspawn;
 
     private void Start()
     {
         player = FindObjectOfType<Player>();
         sm = FindObjectOfType<ScoreManager>();
+        enemyspawn = FindObjectOfType<EnemySpawner>();
     }
 
     private void Update()
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             sm.Kill();
+            enemyspawn.EnemyCounterUpdate();
             Destroy(gameObject);
         }
         if(player.transform.position.x > transform.position.x)
@@ -59,5 +62,5 @@ public class Enemy : MonoBehaviour
                 timeBtwAttack -= Time.deltaTime;
             }
         }
-    } 
+    }
 }
